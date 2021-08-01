@@ -6,6 +6,9 @@
 
         <div class="card-body">
             <form action="{{ route('users.store') }}">
+                @csrf
+                @method('PUT')
+
                 <div class="form-group">
                     <label class="required" for="name">Name</label>
                     <input class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" type="text" name="name" id="name" value="{{ old('name', $user->name) }}" required>
@@ -22,7 +25,7 @@
                     <input class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" type="text" name="email" id="email" value="{{ old('email', $user->email) }}" required>
                     @if($errors->has('email'))
                         <div class="invalid-feedback">
-                            {{ $errors->first('name') }}
+                            {{ $errors->first('email') }}
                         </div>
                     @endif
                     <span class="help-block"> </span>
@@ -33,7 +36,7 @@
                     <input class="form-control {{ $errors->has('address') ? 'is-invalid' : '' }}" type="text" name="address" id="address" value="{{ old('address', $user->address) }}">
                     @if($errors->has('address'))
                         <div class="invalid-feedback">
-                            {{ $errors->first('name') }}
+                            {{ $errors->first('address') }}
                         </div>
                     @endif
                     <span class="help-block"> </span>
@@ -44,7 +47,7 @@
                     <input class="form-control {{ $errors->has('phone_number') ? 'is-invalid' : '' }}" type="text" name="phone_number" id="phone_number" value="{{ old('phone_number', $user->phone_number) }}">
                     @if($errors->has('phone_number'))
                         <div class="invalid-feedback">
-                            {{ $errors->first('name') }}
+                            {{ $errors->first('phone_number') }}
                         </div>
                     @endif
                     <span class="help-block"> </span>

@@ -7,12 +7,18 @@
     </li>
     @can('manage users')
         <li class="c-sidebar-nav-item">
-        <a class="c-sidebar-nav-link {{ request()->is("users/*") ? "c-active" : "" }}" href="{{ route('users.index') }}">
+            <a class="c-sidebar-nav-link {{ request()->is("users/*") ? "c-active" : "" }}" href="{{ route('users.index') }}">
+                <i class="c-sidebar-nav-icon fas fa-fw fa-tachometer-alt"></i>
+                Users
+            </a>
+        </li>
+    @endcan
+    <li class="c-sidebar-nav-item">
+        <a class="c-sidebar-nav-link {{ request()->is("clients/*") ? "c-active" : "" }}" href="{{ route('clients.index') }}">
             <i class="c-sidebar-nav-icon fas fa-fw fa-tachometer-alt"></i>
-            Users
+            Clients
         </a>
     </li>
-    @endcan
     {{--        <li class="c-sidebar-nav-title">Theme</li>--}}
     {{--        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="colors.html">--}}
     {{--                <svg class="c-sidebar-nav-icon">--}}
