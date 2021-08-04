@@ -25,6 +25,12 @@
             Projects
         </a>
     </li>
+    <li class="c-sidebar-nav-item">
+        <a class="c-sidebar-nav-link {{ request()->is("tasks/*") ? "c-active" : "" }}" href="{{ route('tasks.index') }}">
+            <i class="c-sidebar-nav-icon fas fa-fw fa-tachometer-alt"></i>
+            Tasks
+        </a>
+    </li>
     {{--        <li class="c-sidebar-nav-title">Theme</li>--}}
     {{--        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="colors.html">--}}
     {{--                <svg class="c-sidebar-nav-icon">--}}

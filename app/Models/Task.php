@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Project extends Model
+class Task extends Model
 {
     use HasFactory, SoftDeletes;
 
@@ -15,6 +15,7 @@ class Project extends Model
         'description',
         'user_id',
         'client_id',
+        'project_id',
         'deadline',
         'status'
     ];
@@ -27,5 +28,10 @@ class Project extends Model
     public function client()
     {
         return $this->belongsTo(Client::class);
+    }
+
+    public function project()
+    {
+        return $this->belongsTo(Project::class);
     }
 }
