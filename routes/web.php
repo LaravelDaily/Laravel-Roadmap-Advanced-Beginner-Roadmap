@@ -16,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::permanentRedirect('/', 'login');
 
 Auth::routes();
+Route::get('email/verify', '\App\Http\Controllers\Auth\VerificationController@show')->name('verification.notice');
+Route::get('email/verify/{id}/{hash}', '\App\Http\Controllers\Auth\VerificationController@verify')->name('verification.verify');
+Route::post('email/resend', '\App\Http\Controllers\Auth\VerificationController@resend')->name('verification.resend');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

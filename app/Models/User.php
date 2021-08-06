@@ -19,7 +19,8 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
         'email',
         'password',
         'address',
@@ -48,5 +49,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function projects()
     {
         return $this->hasMany(Project::class);
+    }
+
+    public function getFullNameAttribute()
+    {
+        return "{$this->first_name} {$this->last_name}";
     }
 }

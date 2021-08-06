@@ -24,7 +24,7 @@
                 <tbody>
                 @foreach($users as $user)
                     <tr>
-                        <td>{{ $user->name }}</td>
+                        <td>{{ $user->full_name }}</td>
                         <td>
                             @foreach($user->roles as $role)
                                 {{ $role->name }}

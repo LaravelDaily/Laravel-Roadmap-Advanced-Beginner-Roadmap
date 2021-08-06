@@ -2,7 +2,7 @@
     <li class="c-header-nav-item dropdown">
         <a class="c-header-nav-link" data-toggle="dropdown" href="#"
                                               role="button" aria-haspopup="true" aria-expanded="false">
-            <div class="c-avatar"><img class="c-avatar-img" src="assets/img/avatars/6.jpg" alt="{{ auth()->user()->name }}">
+            <div class="c-avatar"><img class="c-avatar-img" src="assets/img/avatars/6.jpg" alt="{{ auth()->user()->first_name }}">
             </div>
         </a>
         <div class="dropdown-menu dropdown-menu-right pt-0">
