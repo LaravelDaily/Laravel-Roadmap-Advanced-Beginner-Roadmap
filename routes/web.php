@@ -23,4 +23,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('clients', \App\Http\Controllers\ClientController::class);
     Route::resource('projects', \App\Http\Controllers\ProjectController::class);
     Route::resource('tasks', \App\Http\Controllers\TaskController::class);
+
+    Route::post('media/{model}/{id}/upload', [\App\Http\Controllers\MediaController::class, 'store'])->name('media.upload');
+    Route::get('media/{mediaItem}/download', [\App\Http\Controllers\MediaController::class, 'download'])->name('media.download');
+    Route::delete('media/{model}/{id}/{mediaItem}/delete', [\App\Http\Controllers\MediaController::class, 'destroy'])->name('media.delete');
 });

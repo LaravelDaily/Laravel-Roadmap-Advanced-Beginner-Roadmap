@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\EditTaskRequest;
 use App\Models\User;
 use App\Models\Task;
 use App\Models\Client;
 use App\Models\Project;
+use App\Http\Requests\EditTaskRequest;
 use App\Http\Requests\CreateTaskRequest;
 
 class TaskController extends Controller
