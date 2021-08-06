@@ -89,12 +89,10 @@
                 <div class="form-group">
                     <label for="status">Status</label>
                     <select class="form-control {{ $errors->has('status') ? 'is-invalid' : '' }}" name="status" id="status" required>
-                        <option value="open" {{ old('status') == 'open' ? 'selected' : '' }}>Open</option>
-                        <option value="in progress" {{ old('status') == 'in progress' ? 'selected' : '' }}>In-progress</option>
-                        <option value="pending" {{ old('status') == 'pending' ? 'selected' : '' }}>Pending</option>
-                        <option value="waiting client" {{ old('status') == 'waiting client' ? 'selected' : '' }}>Waiting client</option>
-                        <option value="blocked" {{ old('status') == 'blocked' ? 'selected' : '' }}>Blocked</option>
-                        <option value="Closed" {{ old('status') == 'Closed' ? 'selected' : '' }}>Closed</option>
+                        @foreach(App\Models\Task::STATUS as $status)
+                            <option
+                                value="{{ $status }}" {{ old('status') == $status ? 'selected' : '' }}>{{ ucfirst($status) }}</option>
+                        @endforeach
                     </select>
                     @if($errors->has('status'))
                         <div class="invalid-feedback">

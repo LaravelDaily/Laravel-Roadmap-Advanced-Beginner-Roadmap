@@ -86,26 +86,10 @@
                             <label for="status">Status</label>
                             <select class="form-control {{ $errors->has('status') ? 'is-invalid' : '' }}" name="status"
                                     id="status" required>
-                                <option
-                                    value="open" {{ (old('status') ? old('status') : $project->status ?? '') == 'open' ? 'selected' : '' }}>
-                                    Open
-                                </option>
-                                <option
-                                    value="in progress" {{ (old('status') ? old('status') : $project->status ?? '') == 'in progress' ? 'selected' : '' }}>
-                                    In-progress
-                                </option>
-                                <option
-                                    value="blocked" {{ (old('status') ? old('status') : $project->status ?? '') == 'blocked' ? 'selected' : '' }}>
-                                    Blocked
-                                </option>
-                                <option
-                                    value="cancelled" {{ (old('status') ? old('status') : $project->status ?? '') == 'cancelled' ? 'selected' : '' }}>
-                                    Cancelled
-                                </option>
-                                <option
-                                    value="completed" {{ (old('status') ? old('status') : $project->status ?? '') == 'completed' ? 'selected' : '' }}>
-                                    Completed
-                                </option>
+                                @foreach(App\Models\Project::STATUS as $status)
+                                    <option
+                                        value="{{ $status }}" {{ (old('status') ? old('status') : $project->status ?? '') == $status ? 'selected' : '' }}>{{ ucfirst($status) }}</option>
+                                @endforeach
                             </select>
                             @if($errors->has('status'))
                                 <div class="invalid-feedback">

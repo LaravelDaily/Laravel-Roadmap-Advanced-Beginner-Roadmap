@@ -13,6 +13,23 @@
         <div class="card-header">Projects list</div>
 
         <div class="card-body">
+            <div class="d-flex justify-content-end">
+                <form action="{{ route('projects.index') }}" method="GET">
+                    <div class="form-group row">
+                        <label for="status" class="col-form-label">Status:</label>
+                        <div class="col-sm-8">
+                            <select class="form-control" name="status" id="status" onchange="this.form.submit()">
+                                <option value="all" {{ request('filter') == 'all' ? 'selected' : '' }}>All</option>
+                                @foreach(App\Models\Project::STATUS as $status)
+                                    <option
+                                        value="{{ $status }}" {{ request('status') == $status ? 'selected' : '' }}>{{ ucfirst($status) }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
             <table class="table table-responsive-sm table-striped">
                 <thead>
                 <tr>
@@ -37,7 +54,8 @@
                                 Edit
                             </a>
                             @can('delete')
-                                <form action="{{ route('projects.destroy', $project) }}" method="POST" onsubmit="return confirm('Are your sure?');" style="display: inline-block;">
+                                <form action="{{ route('projects.destroy', $project) }}" method="POST"
+                                      onsubmit="return confirm('Are your sure?');" style="display: inline-block;">
                                     <input type="hidden" name="_method" value="DELETE">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <input type="submit" class="btn btn-xs btn-danger" value="Delete">

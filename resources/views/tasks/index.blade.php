@@ -13,6 +13,23 @@
         <div class="card-header">Tasks list</div>
 
         <div class="card-body">
+            <div class="d-flex justify-content-end">
+                <form action="{{ route('tasks.index') }}" method="GET">
+                    <div class="form-group row">
+                        <label for="status" class="col-form-label">Status:</label>
+                        <div class="col-sm-8">
+                            <select class="form-control" name="status" id="status" onchange="this.form.submit()">
+                                <option value="all" {{ request('filter') == 'all' ? 'selected' : '' }}>All</option>
+                                @foreach(App\Models\Task::STATUS as $status)
+                                    <option
+                                        value="{{ $status }}" {{ request('status') == $status ? 'selected' : '' }}>{{ ucfirst($status) }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
             <table class="table table-responsive-sm table-striped">
                 <thead>
                 <tr>

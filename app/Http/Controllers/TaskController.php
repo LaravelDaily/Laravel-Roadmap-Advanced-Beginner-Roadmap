@@ -13,7 +13,7 @@ class TaskController extends Controller
 {
     public function index()
     {
-        $tasks = Task::with(['user', 'client', 'project'])->paginate(20);
+        $tasks = Task::with(['user', 'client', 'project'])->filterStatus(request('status'))->paginate(20);
 
         return view('tasks.index', compact('tasks'));
     }

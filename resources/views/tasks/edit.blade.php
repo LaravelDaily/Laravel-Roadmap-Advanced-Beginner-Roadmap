@@ -103,30 +103,10 @@
                             <label for="status">Status</label>
                             <select class="form-control {{ $errors->has('status') ? 'is-invalid' : '' }}" name="status"
                                     id="status" required>
-                                <option
-                                    value="open" {{ (old('status') ? old('status') : $task->status ?? '') == 'open' ? 'selected' : '' }}>
-                                    Open
-                                </option>
-                                <option
-                                    value="in progress" {{ (old('status') ? old('status') : $task->status ?? '') == 'in progress' ? 'selected' : '' }}>
-                                    In-progress
-                                </option>
-                                <option
-                                    value="pending" {{ (old('status') ? old('status') : $task->status ?? '') == 'pending' ? 'selected' : '' }}>
-                                    Pending
-                                </option>
-                                <option
-                                    value="waiting client" {{ (old('status') ? old('status') : $task->status ?? '') == 'waiting client' ? 'selected' : '' }}>
-                                    Waiting client
-                                </option>
-                                <option
-                                    value="blocked" {{ (old('status') ? old('status') : $task->status ?? '') == 'blocked' ? 'selected' : '' }}>
-                                    Blocked
-                                </option>
-                                <option
-                                    value="closed" {{ (old('status') ? old('status') : $task->status ?? '') == 'closed' ? 'selected' : '' }}>
-                                    Closed
-                                </option>
+                                @foreach(App\Models\Task::STATUS as $status)
+                                    <option
+                                        value="{{ $status }}" {{ (old('status') ? old('status') : $task->status ?? '') == $status ? 'selected' : '' }}>{{ ucfirst($status) }}</option>
+                                @endforeach
                             </select>
                             @if($errors->has('status'))
                                 <div class="invalid-feedback">
