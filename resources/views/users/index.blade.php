@@ -31,13 +31,13 @@
                             @endforeach
                         </td>
                         <td>
-                            <a class="btn btn-xs btn-info" href="{{ route('users.edit', $user) }}">
+                            <a class="btn btn-sm btn-info" href="{{ route('users.edit', $user) }}">
                                 Edit
                             </a>
                             <form action="{{ route('users.destroy', $user) }}" method="POST" onsubmit="return confirm('Are your sure?');" style="display: inline-block;">
                                 <input type="hidden" name="_method" value="DELETE">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                                <input type="submit" class="btn btn-sm btn-danger" value="Delete">
                             </form>
                         </td>
                     </tr>

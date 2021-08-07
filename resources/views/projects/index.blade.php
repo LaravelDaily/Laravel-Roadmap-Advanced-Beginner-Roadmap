@@ -50,7 +50,7 @@
                         <td>{{ $project->deadline }}</td>
                         <td>{{ $project->status }}</td>
                         <td>
-                            <a class="btn btn-xs btn-info" href="{{ route('projects.edit', $project) }}">
+                            <a class="btn btn-sm btn-info" href="{{ route('projects.edit', $project) }}">
                                 Edit
                             </a>
                             @can('delete')
@@ -58,7 +58,7 @@
                                       onsubmit="return confirm('Are your sure?');" style="display: inline-block;">
                                     <input type="hidden" name="_method" value="DELETE">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                                    <input type="submit" class="btn btn-sm btn-danger" value="Delete">
                                 </form>
                             @endcan
                         </td>

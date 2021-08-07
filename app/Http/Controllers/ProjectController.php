@@ -7,6 +7,7 @@ use App\Models\Client;
 use App\Models\Project;
 use App\Http\Requests\EditProjectRequest;
 use App\Http\Requests\CreateProjectRequest;
+use App\Notifications\ProjectAssigned;
 
 class ProjectController extends Controller
 {
@@ -19,7 +20,7 @@ class ProjectController extends Controller
 
     public function create()
     {
-        $users = User::all()->pluck('name', 'id');
+        $users = User::all()->pluck('full_name', 'id');
         $clients = Client::all()->pluck('company_name', 'id');
 
         return view('projects.create', compact('users', 'clients'));
@@ -27,7 +28,11 @@ class ProjectController extends Controller
 
     public function store(CreateProjectRequest $request)
     {
-        Project::create($request->validated());
+        $project = Project::create($request->validated());
+
+        $user = User::find($request->user_id);
+
+        $user->notify(new ProjectAssigned($project));
 
         return redirect()->route('projects.index');
     }
@@ -39,7 +44,7 @@ class ProjectController extends Controller
 
     public function edit(Project $project)
     {
-        $users = User::all()->pluck('name', 'id');
+        $users = User::all()->pluck('full_name', 'id');
         $clients = Client::all()->pluck('company_name', 'id');
 
         return view('projects.edit', compact('project', 'users', 'clients'));
@@ -47,6 +52,12 @@ class ProjectController extends Controller
 
     public function update(EditProjectRequest $request, Project $project)
     {
+        if ($project->user_id !== $request->user_id) {
+            $user = User::find($request->user_id);
+
+            $user->notify(new ProjectAssigned($project));
+        }
+
         $project->update($request->validated());
 
         return redirect()->route('projects.index');

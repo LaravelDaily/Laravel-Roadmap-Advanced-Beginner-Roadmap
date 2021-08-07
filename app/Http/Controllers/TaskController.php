@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Task;
 use App\Models\Client;
 use App\Models\Project;
+use App\Notifications\TaskAssigned;
 use App\Http\Requests\EditTaskRequest;
 use App\Http\Requests\CreateTaskRequest;
 
@@ -20,7 +21,7 @@ class TaskController extends Controller
 
     public function create()
     {
-        $users = User::all()->pluck('name', 'id');
+        $users = User::all()->pluck('full_name', 'id');
         $clients = Client::all()->pluck('company_name', 'id');
         $projects = Project::all()->pluck('title', 'id');
 
@@ -29,7 +30,11 @@ class TaskController extends Controller
 
     public function store(CreateTaskRequest $request)
     {
-        Task::create($request->validated());
+        $task = Task::create($request->validated());
+
+        $user = User::find($request->user_id);
+
+        $user->notify(new TaskAssigned($task));
 
         return redirect()->route('tasks.index');
     }
@@ -41,7 +46,7 @@ class TaskController extends Controller
 
     public function edit(Task $task)
     {
-        $users = User::all()->pluck('name', 'id');
+        $users = User::all()->pluck('full_name', 'id');
         $clients = Client::all()->pluck('company_name', 'id');
         $projects = Project::all()->pluck('title', 'id');
 
@@ -50,6 +55,12 @@ class TaskController extends Controller
 
     public function update(EditTaskRequest $request, Task $task)
     {
+        if ($task->user_id !== $request->user_id) {
+            $user = User::find($request->user_id);
+
+            $user->notify(new TaskAssigned($task));
+        }
+
         $task->update($request->validated());
 
         return redirect()->route('tasks.index');

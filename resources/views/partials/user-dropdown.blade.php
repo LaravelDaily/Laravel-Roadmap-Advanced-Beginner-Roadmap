@@ -1,8 +1,17 @@
 <ul class="c-header-nav ml-auto mr-4">
+    <li class="c-header-nav-item d-md-down-none mx-2">
+        <a class="c-header-nav-link" href="{{ route('notifications.index') }}">
+            @if(auth()->user()->unreadNotifications->count())
+                <span class="badge rounded-pill bg-success">{{ auth()->user()->unreadNotifications->count() }}</span>
+            @endif
+            <i class="far fa-bell"></i>
+        </a>
+    </li>
     <li class="c-header-nav-item dropdown">
         <a class="c-header-nav-link" data-toggle="dropdown" href="#"
-                                              role="button" aria-haspopup="true" aria-expanded="false">
-            <div class="c-avatar"><img class="c-avatar-img" src="assets/img/avatars/6.jpg" alt="{{ auth()->user()->first_name }}">
+           role="button" aria-haspopup="true" aria-expanded="false">
+            <div class="c-avatar">
+                <i class="far fa-user"></i>
             </div>
         </a>
         <div class="dropdown-menu dropdown-menu-right pt-0">
@@ -50,7 +59,8 @@
                     <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-lock-locked"></use>
                 </svg>
                 Lock Account</a>
-            <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
+            <a class="dropdown-item" href="#"
+               onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
                 <i class="c-icon fas fa-fw fa-sign-out-alt mr-2"></i>
                 Logout</a>
         </div>
