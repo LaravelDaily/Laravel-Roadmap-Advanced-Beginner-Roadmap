@@ -45,7 +45,7 @@
                 @foreach($projects as $project)
                     <tr>
                         <td>{{ $project->title }}</td>
-                        <td>{{ $project->user->name }}</td>
+                        <td>{{ $project->user->full_name }}</td>
                         <td>{{ $project->client->company_name }}</td>
                         <td>{{ $project->deadline }}</td>
                         <td>{{ $project->status }}</td>
