@@ -27,11 +27,15 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('projects', \App\Http\Controllers\ProjectController::class);
     Route::resource('tasks', \App\Http\Controllers\TaskController::class);
 
-    Route::get('notifications', [\App\Http\Controllers\NotificationController::class, 'index'])->name('notifications.index');
-    Route::put('notifications/{notification}', [\App\Http\Controllers\NotificationController::class, 'update'])->name('notifications.update');
-    Route::delete('notifications/destroy', [\App\Http\Controllers\NotificationController::class, 'destroy'])->name('notifications.destroy');
+    Route::group(['prefix' => 'notifications', 'name' => 'notifications.'], function () {
+        Route::get('/', [\App\Http\Controllers\NotificationController::class, 'index'])->name('index');
+        Route::put('/{notification}', [\App\Http\Controllers\NotificationController::class, 'update'])->name('update');
+        Route::delete('/destroy', [\App\Http\Controllers\NotificationController::class, 'destroy'])->name('destroy');
+    });
 
-    Route::post('media/{model}/{id}/upload', [\App\Http\Controllers\MediaController::class, 'store'])->name('media.upload');
-    Route::get('media/{mediaItem}/download', [\App\Http\Controllers\MediaController::class, 'download'])->name('media.download');
-    Route::delete('media/{model}/{id}/{mediaItem}/delete', [\App\Http\Controllers\MediaController::class, 'destroy'])->name('media.delete');
+    Route::group(['prefix' => 'media', 'name' => 'media.'], function () {
+        Route::post('{model}/{id}/upload', [\App\Http\Controllers\MediaController::class, 'store'])->name('upload');
+        Route::get('{mediaItem}/download', [\App\Http\Controllers\MediaController::class, 'download'])->name('download');
+        Route::delete('{model}/{id}/{mediaItem}/delete', [\App\Http\Controllers\MediaController::class, 'destroy'])->name('delete');
+    });
 });
