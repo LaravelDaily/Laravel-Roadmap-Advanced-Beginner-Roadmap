@@ -27,13 +27,13 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('projects', \App\Http\Controllers\ProjectController::class);
     Route::resource('tasks', \App\Http\Controllers\TaskController::class);
 
-    Route::group(['prefix' => 'notifications', 'name' => 'notifications.'], function () {
+    Route::group(['prefix' => 'notifications', 'as' => 'notifications.'], function () {
         Route::get('/', [\App\Http\Controllers\NotificationController::class, 'index'])->name('index');
         Route::put('/{notification}', [\App\Http\Controllers\NotificationController::class, 'update'])->name('update');
         Route::delete('/destroy', [\App\Http\Controllers\NotificationController::class, 'destroy'])->name('destroy');
     });
 
-    Route::group(['prefix' => 'media', 'name' => 'media.'], function () {
+    Route::group(['prefix' => 'media', 'as' => 'media.'], function () {
         Route::post('{model}/{id}/upload', [\App\Http\Controllers\MediaController::class, 'store'])->name('upload');
         Route::get('{mediaItem}/download', [\App\Http\Controllers\MediaController::class, 'download'])->name('download');
         Route::delete('{model}/{id}/{mediaItem}/delete', [\App\Http\Controllers\MediaController::class, 'destroy'])->name('delete');
