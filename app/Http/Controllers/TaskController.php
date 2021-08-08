@@ -41,7 +41,9 @@ class TaskController extends Controller
 
     public function show(Task $task)
     {
-        //
+        $task->load('user', 'client');
+
+        return view('tasks.show', compact('task'));
     }
 
     public function edit(Task $task)

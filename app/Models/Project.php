@@ -33,4 +33,9 @@ class Project extends Model implements HasMedia
     {
         return $this->belongsTo(Client::class);
     }
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
 }
