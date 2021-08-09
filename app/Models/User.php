@@ -39,6 +39,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'remember_token',
     ];
 
+    public const FILTER = ['true', 'false'];
+
     /**
      * The attributes that should be cast to native types.
      *
