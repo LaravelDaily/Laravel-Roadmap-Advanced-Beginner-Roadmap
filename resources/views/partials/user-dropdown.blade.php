@@ -17,23 +17,8 @@
         <div class="dropdown-menu dropdown-menu-right pt-0">
             <div class="dropdown-header bg-light py-2"><strong>Settings</strong></div>
             <a class="dropdown-item" href="#">
-                <svg class="c-icon mr-2">
-                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user"></use>
-                </svg>
-                Profile</a><a class="dropdown-item" href="#">
-                <svg class="c-icon mr-2">
-                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-settings"></use>
-                </svg>
-                Settings</a><a class="dropdown-item" href="#">
-                <svg class="c-icon mr-2">
-                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-credit-card"></use>
-                </svg>
-                Payments<span class="badge badge-secondary ml-auto">42</span></a><a class="dropdown-item"
-                                                                                    href="#">
-                <svg class="c-icon mr-2">
-                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-file"></use>
-                </svg>
-                Projects<span class="badge badge-primary ml-auto">42</span></a>
+                <i class="c-icon fas fa-fw fa-id-card mr-2"></i>
+                Profile</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#"
                onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
