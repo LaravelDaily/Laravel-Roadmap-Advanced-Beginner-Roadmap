@@ -20,7 +20,7 @@ Route::get('email/verify', '\App\Http\Controllers\Auth\VerificationController@sh
 Route::get('email/verify/{id}/{hash}', '\App\Http\Controllers\Auth\VerificationController@verify')->name('verification.verify');
 Route::post('email/resend', '\App\Http\Controllers\Auth\VerificationController@resend')->name('verification.resend');
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'termsAccepted'])->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::resource('users', \App\Http\Controllers\UserController::class)->middleware('role:admin');
     Route::resource('clients', \App\Http\Controllers\ClientController::class);
@@ -38,4 +38,11 @@ Route::middleware(['auth'])->group(function () {
         Route::get('{mediaItem}/download', [\App\Http\Controllers\MediaController::class, 'download'])->name('download');
         Route::delete('{model}/{id}/{mediaItem}/delete', [\App\Http\Controllers\MediaController::class, 'destroy'])->name('delete');
     });
+
+    Route::get('token', function () {
+        return auth()->user()->createToken('crm')->plainTextToken;
+    });
 });
+
+Route::get('terms', [\App\Http\Controllers\TermsController::class, 'index'])->middleware('auth')->name('terms.index');
+Route::post('terms', [\App\Http\Controllers\TermsController::class, 'store'])->middleware('auth')->name('terms.store');
