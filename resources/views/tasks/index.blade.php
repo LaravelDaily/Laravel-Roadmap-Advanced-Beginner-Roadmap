@@ -66,7 +66,7 @@
                 </tbody>
             </table>
 
-            {{ $tasks->links() }}
+            {{ $tasks->withQueryString()->links() }}
         </div>
     </div>
 
