@@ -39,6 +39,10 @@ Route::middleware(['auth', 'termsAccepted'])->group(function () {
         Route::delete('{model}/{id}/{mediaItem}/delete', [\App\Http\Controllers\MediaController::class, 'destroy'])->name('delete');
     });
 
+    Route::get('profile', [\App\Http\Controllers\ProfileController::class, 'index'])->name('profile.index');
+    Route::post('profile', [\App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
+    Route::post('profile/change-password', [\App\Http\Controllers\ProfileController::class, 'changePassword'])->name('profile.changePassword');
+
     Route::get('token', function () {
         return auth()->user()->createToken('crm')->plainTextToken;
     });
