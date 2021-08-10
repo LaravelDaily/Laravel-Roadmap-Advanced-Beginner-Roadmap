@@ -29,7 +29,7 @@ __Link icons: :book: Official Docs :clapper: Video :page_facing_up: Article :cap
 | Working with API Clients: Postman or Alternatives |:book: [Postman API Client](https://www.postman.com/product/api-client/) <br>|
 | API Eloquent Resources | [ClientResource.php](https://github.com/LaravelDaily/Laravel-Roadmap-Advanced-Beginner-Roadmap/blob/main/app/Http/Resources/ClientResource.php) <br>|
 | API Auth with Sanctum | [api.php](https://github.com/LaravelDaily/Laravel-Roadmap-Advanced-Beginner-Roadmap/blob/main/routes/api.php#L21) <br> [User.php](https://github.com/LaravelDaily/Laravel-Roadmap-Advanced-Beginner-Roadmap/blob/main/app/Models/User.php#L15) <br> [web.php](https://github.com/LaravelDaily/Laravel-Roadmap-Advanced-Beginner-Roadmap/blob/main/routes/web.php#L46) <br>|
-| API Error Handling and Status Codes |:clapper: [Laravel API 404 Error: Customize Exception Message](https://www.youtube.com/watch?v=SlBJrLnyoMk) <br>:page_facing_up: [HTTP Status Codes](https://httpstatuses.com/) <br>|
+| API Error Handling and Status Codes | [Handler.php](https://github.com/LaravelDaily/Laravel-Roadmap-Advanced-Beginner-Roadmap/blob/main/app/Exceptions/Handler.php#L37) <br>
 | **Debugging Errors** ||
 | Log Files in Laravel |:book: [Logging](https://laravel.com/docs/8.x/logging) <br>|
 | Try-Catch and Laravel Exceptions |:book: [Error Handling](https://laravel.com/docs/8.x/errors) <br>:clapper: [Exceptions in Laravel: Why/How to Use and Create Your Own](https://www.youtube.com/watch?v=RTTXZVIL6tw) <br>|
@@ -39,10 +39,9 @@ __Link icons: :book: Official Docs :clapper: Video :page_facing_up: Article :cap
 | **Sending Email** ||
 | Mailables and Mail Facade |:book: [Mail & Mailables](https://laravel.com/docs/8.x/mail) <br>|
 | Configure Drivers/Services: Mailgun, Mailtrap, etc |:page_facing_up: [How to Send Email From Laravel, and Why We Need 3rd Party Providers For It](https://laraveldaily.com/how-to-send-email-from-laravel-and-why-we-need-3rd-party-providers-for-it/) <br>:book: [Mail: Drivers Prerequisites](https://laravel.com/docs/8.x/mail#driver-prerequisites) <br>|
-| Notifications System: Email, SMS, Slack, etc. | [Notifications](https://github.com/LaravelDaily/Laravel-Roadmap-Advanced-Beginner-Roadmap/blob/main/app/Notifications/TaskAssigned.php) <br>|
+| Notifications System: Email, SMS, Slack, etc. | [TaskAssigned.php](https://github.com/LaravelDaily/Laravel-Roadmap-Advanced-Beginner-Roadmap/blob/main/app/Notifications/TaskAssigned.php) <br> [TaskController](https://github.com/LaravelDaily/Laravel-Roadmap-Advanced-Beginner-Roadmap/blob/main/app/Http/Controllers/TaskController.php#L37) |
 | **Automated Testing with PHPUnit** ||
-| "Smoke" Tests to Check if Pages are Loading |:book: [Testing: Getting Started](https://laravel.com/docs/8.x/testing) <br>:capital_abcd: [Laravel: PHPUnit Testing for Beginners](https://laraveldaily.teachable.com/p/laravel-phpunit-testing-for-beginners) <br>|
-| Configure Testing Database and Test CRUD Operations |:book: [Database Testing](https://laravel.com/docs/8.x/database-testing) <br>|
+| Configure Testing Database and Test CRUD Operations | [/Feature](https://github.com/LaravelDaily/Laravel-Roadmap-Advanced-Beginner-Roadmap/tree/main/tests/Feature) <br>|
 | **Deployment and Version Control** ||
 | Git Version Control |:book: [Git](https://git-scm.com/) <br>:clapper: [Git in Laravel. Part 1 - Branches: Main, Develop and Feature](https://www.youtube.com/watch?v=AmScEC-_72I) <br>|
 | Deployment on Live Servers |:book: [Deployment](https://laravel.com/docs/8.x/deployment) <br>:page_facing_up: [How to Deploy Laravel Projects to Live Server: The Ultimate Guide](https://laraveldaily.com/how-to-deploy-laravel-projects-to-live-server-the-ultimate-guide/) <br>:page_facing_up: [What Server is Needed to Deploy Laravel Projects](https://laraveldaily.com/what-server-is-needed-to-deploy-laravel-projects/) <br>:clapper: [How we Deploy Laravel: Branches, Staging Servers, Forge and Envoyer](https://www.youtube.com/watch?v=8DVuVftFZcQ) <br>|
