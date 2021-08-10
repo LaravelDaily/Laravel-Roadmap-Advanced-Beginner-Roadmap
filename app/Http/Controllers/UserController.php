@@ -17,7 +17,7 @@ class UserController extends Controller
         }
 
         $users = User::with('roles')
-            ->when($withDeleted, function ($query) use ($withDeleted) {
+            ->when($withDeleted, function ($query)  {
                 $query->withTrashed();
             })
             ->paginate(20);
