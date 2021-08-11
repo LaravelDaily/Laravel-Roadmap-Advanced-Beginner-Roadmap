@@ -20,6 +20,11 @@ class Client extends Model
         'company_vat'
     ];
 
+    public function setCompanyNameAttribute($value)
+    {
+        $this->attributes['company_name'] = ucfirst($value);
+    }
+
     public function projects()
     {
         return $this->hasMany(Project::class);
