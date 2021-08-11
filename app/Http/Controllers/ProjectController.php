@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Client;
 use App\Models\Project;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Gate;
+use App\Notifications\ProjectAssigned;
 use App\Http\Requests\EditProjectRequest;
 use App\Http\Requests\CreateProjectRequest;
-use App\Notifications\ProjectAssigned;
 
 class ProjectController extends Controller
 {
@@ -67,6 +69,8 @@ class ProjectController extends Controller
 
     public function destroy(Project $project)
     {
+        abort_if(Gate::denies('delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
         $project->delete();
 
         return redirect()->route('projects.index');

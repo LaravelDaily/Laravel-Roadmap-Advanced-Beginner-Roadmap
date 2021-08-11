@@ -6,8 +6,10 @@ use App\Models\User;
 use App\Models\Task;
 use App\Models\Client;
 use App\Models\Project;
+use Illuminate\Http\Response;
 use App\Notifications\TaskAssigned;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Gate;
 use App\Http\Requests\EditTaskRequest;
 use App\Http\Requests\CreateTaskRequest;
 use App\Mail\TaskAssigned as MailTaskAssigned;
@@ -76,6 +78,8 @@ class TaskController extends Controller
 
     public function destroy(Task $task)
     {
+        abort_if(Gate::denies('delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
         $task->delete();
 
         return redirect()->route('tasks.index');

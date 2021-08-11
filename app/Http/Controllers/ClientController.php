@@ -49,7 +49,7 @@ class ClientController extends Controller
 
     public function destroy(Client $client)
     {
-        abort_if(Gate::denies('example_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $client->delete();
 
