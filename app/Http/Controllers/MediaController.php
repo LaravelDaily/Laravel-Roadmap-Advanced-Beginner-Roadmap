@@ -11,7 +11,7 @@ class MediaController extends Controller
     {
         $upload = app('App\\Models\\'.$model)::find($id);
 
-        $upload->addMedia($request->file)->toMediaCollection();
+        $upload->addMedia($request->file)->toMediaCollection('default', 's3');
 
         return redirect()->route(strtolower($model).'s.edit', $id);
     }
