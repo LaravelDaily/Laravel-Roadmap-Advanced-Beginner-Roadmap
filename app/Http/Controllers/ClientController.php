@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\CannotDelete;
 use App\Http\Requests\CreateClientRequest;
 use App\Http\Requests\EditClientRequest;
 use App\Models\Client;
@@ -51,7 +52,13 @@ class ClientController extends Controller
     {
         abort_if(Gate::denies('delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $client->delete();
+        try {
+            $client->delete();
+        } catch (\Illuminate\Database\QueryException $e) {
+            if($e->getCode() === '23000') {
+               return redirect()->back()->with('status', 'Client belongs to project and/or task. Cannot delete.');
+           }
+        }
 
         return redirect()->route('clients.index');
     }

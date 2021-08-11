@@ -13,6 +13,12 @@
         <div class="card-header">Clients list</div>
 
         <div class="card-body">
+            @if (session('status'))
+                <div class="alert alert-danger" role="alert">
+                    {{ session('status') }}
+                </div>
+            @endif
+
             <table class="table table-responsive-sm table-striped">
                 <thead>
                 <tr>

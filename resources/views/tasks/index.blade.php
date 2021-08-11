@@ -13,6 +13,12 @@
         <div class="card-header">Tasks list</div>
 
         <div class="card-body">
+            @if (session('status'))
+                <div class="alert alert-danger" role="alert">
+                    {{ session('status') }}
+                </div>
+            @endif
+
             <div class="d-flex justify-content-end">
                 <form action="{{ route('tasks.index') }}" method="GET">
                     <div class="form-group row">

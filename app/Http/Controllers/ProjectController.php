@@ -71,7 +71,13 @@ class ProjectController extends Controller
     {
         abort_if(Gate::denies('delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $project->delete();
+        try {
+            $project->delete();
+        } catch (\Illuminate\Database\QueryException $e) {
+            if($e->getCode() === '23000') {
+               return redirect()->back()->with('status', 'Project belongs to task. Cannot delete.');
+           }
+        }
 
         return redirect()->route('projects.index');
     }
