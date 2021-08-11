@@ -7,8 +7,10 @@ use App\Models\Task;
 use App\Models\Client;
 use App\Models\Project;
 use App\Notifications\TaskAssigned;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\EditTaskRequest;
 use App\Http\Requests\CreateTaskRequest;
+use App\Mail\TaskAssigned as MailTaskAssigned;
 
 class TaskController extends Controller
 {
@@ -36,6 +38,8 @@ class TaskController extends Controller
 
         $user->notify(new TaskAssigned($task));
 
+        Mail::to($user)->send(new MailTaskAssigned($task));
+
         return redirect()->route('tasks.index');
     }
 
@@ -61,6 +65,8 @@ class TaskController extends Controller
             $user = User::find($request->user_id);
 
             $user->notify(new TaskAssigned($task));
+
+            Mail::to($user)->send(new MailTaskAssigned($task));
         }
 
         $task->update($request->validated());
